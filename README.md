@@ -18,3 +18,15 @@
 - main: стабільний код
 - develop: інтеграційна гілка
 - feature/*: гілки під конкретні задачі
+
+## Схема архітектури та залежностей
+Застосунок побудований за принципами Clean Architecture. Залежності спрямовані всередину (до Domain):
+* **Domain**: Ядро (сутності `Message` та інтерфейс `IMessageRepository`). Не залежить від інших шарів.
+* **Application**: Сценарії використання (`SendMessageUseCase`, `GetMessagesUseCase`). Залежить від Domain.
+* **Infrastructure**: Реалізація сховища (`InMemoryMessageRepository`). Залежить від Domain.
+* **Presentation**: Точка входу (`Program.cs`), яка збирає всі шари через Dependency Injection.
+
+## Інструкція зі збірки та запуску
+1. Склонуйте репозиторій: `git clone https://github.com/kovalova00/lab5_STP.git`
+2. Перейдіть у директорію: `cd lab5_STP`
+3. Запустіть проєкт: `dotnet run`
